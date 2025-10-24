@@ -16,7 +16,7 @@ All files are available directly in:
 - `data/finetune/offsides/{trainoffside,valoffside,testoffside}.jsonl`
 
    File                                Description                                                                                                                                                       
- `TwosidesCleaning&TuningCode.ipynb`  :  Full cleaning and fine-tuning preparation workflow for TWOSIDES.
+`TwosidesCleaning&TuningCode.ipynb`  :  Full cleaning and fine-tuning preparation workflow for TWOSIDES.
 
 `offside_cleaning_code.ipynb`        : Data-cleaning notebook for OFFSIDES.
 
