@@ -1,0 +1,116 @@
+# ============================================================================
+# REQUIREMENTS FOR LLAMA-2-7B LOCAL INFERENCE
+# ============================================================================
+# Install with: pip install -r requirements.txt
+
+# Core Hugging Face packages
+transformers>=4.35.0
+huggingface_hub>=0.19.0
+
+# PyTorch - Deep learning framework
+# For NVIDIA GPU (CUDA 11.8+): pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+# For CPU only: pip install torch torchvision
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Quantization library for memory-efficient inference
+# Reduces model memory from ~28GB to ~7GB using 4-bit quantization
+bitsandbytes>=0.41.0
+
+# Model acceleration and distributed loading
+accelerate>=0.24.0
+
+# Additional dependencies
+sentencepiece>=0.1.99  # Tokenizer support for LLaMA models
+protobuf>=3.20.0       # Protocol buffers
+tqdm>=4.65.0           # Progress bars
+
+# ============================================================================
+# INSTALLATION INSTRUCTIONS
+# ============================================================================
+#
+# Step 1: Install dependencies
+#   pip install -r requirements.txt
+#
+# Step 2: Get Hugging Face token
+#   1. Create account at https://huggingface.co
+#   2. Get token from https://huggingface.co/settings/tokens
+#   3. Accept Llama-2 license at https://huggingface.co/meta-llama/Llama-2-7b
+#
+# Step 3: Set your token
+#   export HF_TOKEN="your_token_here"
+#
+# Step 4: Run the script
+#   python llama2_local_inference.py
+#
+# ============================================================================
+# HARDWARE REQUIREMENTS
+# ============================================================================
+#
+# Option 1: GPU (Recommended)
+#   - NVIDIA GPU with 8GB+ VRAM (RTX 3060, RTX 3070, RTX 4060, etc.)
+#   - ~15GB disk space for model download
+#   - CUDA 11.8+ installed
+#   - Inference speed: 1-3 seconds per response
+#
+# Option 2: Apple Silicon (Mac M1/M2/M3)
+#   - Mac with M1, M2, or M3 chip
+#   - 16GB+ unified memory
+#   - ~15GB disk space
+#   - Inference speed: 3-5 seconds per response
+#   - Note: Remove bitsandbytes if installation fails
+#
+# Option 3: CPU Only (Not Recommended)
+#   - Any modern CPU
+#   - 16GB+ RAM
+#   - ~15GB disk space
+#   - Inference speed: 30-60+ seconds per response
+#
+# ============================================================================
+# MEMORY USAGE (Llama-2-7B)
+# ============================================================================
+#
+# Without quantization: ~28GB VRAM
+# With 8-bit quantization: ~14GB VRAM
+# With 4-bit quantization: ~7GB VRAM (Default in script)
+#
+# ============================================================================
+# TROUBLESHOOTING
+# ============================================================================
+#
+# Error: "CUDA out of memory"
+#   Solution: Script already uses 4-bit quantization. Close other GPU apps.
+#
+# Error: "No module named 'bitsandbytes'"
+#   Solution: Install CUDA toolkit, or comment out 4-bit loading in script
+#
+# Error: "401 Unauthorized" when downloading model
+#   Solution: Set HF_TOKEN and accept model license on Hugging Face
+#
+# Error: "No space left on device"
+#   Solution: Free up at least 15GB disk space
+#
+# Model download is slow
+#   Solution: First download takes 5-10 minutes. Model is cached locally after.
+#
+# ============================================================================
+# COMPARISON WITH INFERENCE API
+# ============================================================================
+#
+# Local Inference (This Script):
+#   ✅ Free - no API costs
+#   ✅ Private - data stays on your machine
+#   ✅ Offline - works without internet (after first download)
+#   ✅ Fast - low latency
+#   ❌ Requires GPU (recommended)
+#   ❌ Initial setup needed
+#
+# Inference API:
+#   ✅ No GPU needed
+#   ✅ Easy setup
+#   ❌ Costs money for usage
+#   ❌ Data sent to external servers
+#   ❌ Requires internet connection
+#   ❌ Higher latency
+#
+# ============================================================================
